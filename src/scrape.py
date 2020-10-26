@@ -29,17 +29,17 @@ soup = BeautifulSoup(r.text, 'html.parser')
 
 # this will give me a big thing of whatever is in the entry for each book
 soup.find_all('tr', "")[0]
-# OR (not sure which one, would like to try them out)
-soup.find_all('table', "tablesList js-dataTooltip")[0]
+entries = soup.find_all('tr', '')[0]
+
 
 # identify the elements that I want
-soup.find_all('tr itemscope', '')[0].find('td', 'number').text # ranking
-soup.find_all('tr itemscope', '')[0].find('a', 'bookTitle').text.rstrip() # book title
-soup.find_all('tr itemscope', '')[0].find('a', 'bookTitle').a['href'] # link to book
-soup.find_all('tr itemscope', '')[0].find('a', 'authorname').span.text.rstrip() # author
-soup.find_all('tr itemscope', '')[0].find('span', 'minirating').text.rstrip() #rating
-soup.find_all('tr itemscope', '')[0].find('span', 'list_book_votes_2657').text # score
-soup.find_all('tr itemscope', "")[0].find('a', 'loading_link_778518').text.rstrip() # votes
+entries.find('td', 'number').text # ranking
+entries.find('a', 'bookTitle').text.strip() # title
+entries.find('a', 'bookTitle')['href'] # link to book
+entries.find('a', 'authorName').text.rstrip() # author
+entries.find('span', 'minirating').text.strip() # rating
+entries.find('span', 'smallText uitext').find('a').text # score
+entries.find('span', 'smallText uitext').find_all('a')[1].text # votes
 
 # loop through the entries
 b_title = []
@@ -48,16 +48,16 @@ ranking = []
 rating = []
 score = []
 votes = []
-links = []
+links_pt2 = []
 
-for idx, book in enumerate(soup.find_all('tr itemscope', '')):
-    b_title.append(book.find('a', 'bookTitle).text.rstrip())
-    author.append(book.find('a', 'authorName').span.text.rstrip())
-    ranking.append(book.find('td', 'number').text
-    rating.append(book.find('span', 'minirating').text.rstrip())
-    score.append(book.find('span', 'list_book_votes_2657').text)
-    votes.append(book.find('a', 'loading_link_778518').text.rstrip())
-    links.append(book.find('a', 'bookTitle').a['href'])
+for idx, book in enumerate(soup.find_all('tr', '')):
+    b_title.append(book.find('a', 'bookTitle').text.strip())
+    author.append(book.find('a', 'authorName').text.strip())
+    ranking.append(book.find('td', 'number').text)
+    rating.append(book.find('span', 'minirating').text.strip())
+    score.append(book.find('span', 'smallText uitext').find('a').text)
+    votes.append(book.find('span', 'smallText uitext').find_all('a')[1].text)
+    links_pt2.append(book.find('a', 'bookTitle')['href'])
 
 
 # Step 4: Go through pulled hyperlinks for more data
