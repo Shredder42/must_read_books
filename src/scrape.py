@@ -76,24 +76,38 @@ def combine_url_parts(lst):
 b_format = []
 pg_cnt = []
 release = []
+new_release = []
 
-for link in links:
+
+for link in full_links:
+
     sub_page = requests.get(link)
-    pages.insert_one({'link': links, 'html': sub_page.text})
+    page1.insert_one({'link': link, 'html': sub_page.text})
     sub_soup = BeautifulSoup(sub_page.text, 'html.parser')
 
+    sub_entries = sub_soup.find_all('div', 'row')
 
-    #  this is skipping the item by item inspection - I may want to do that
+    try:
+        fmt = sub_entries[0].find('span', {'itemprop': 'bookFormat'}).text # book format
+    except:
+        fmt = 'NA'
 
-    fmt = sub_soup.find_all('div', 'row')[0].find_all('span')[0].text
-    pgs = sub_soup.find_all('div', 'row')[0].find_all('span')[1].text
-    rls = sub_soup.find_all('div', 'row')[1].find('nobr', 'greyText').text.strip()
+    pgs = sub_entries[0].find('span', {'itemprop':'numberOfPages'}).text # pages
+
+    try:
+        rls = sub_entries[1].find('nobr', 'greyText').text.strip() # original publication
+    except:
+        rls = 'NA'
+
+    n_rls = sub_entries[1].text.strip()
 
     b_format.append(fmt)
     pg_cnt.append(pgs)
     release.append(rls)
+    new_release.append(n_rls)
 
-    time.sleep(2)
+    time.sleep(1)
+
 
 # Step 5: Convert to Pandas data frame and .csv file
 
