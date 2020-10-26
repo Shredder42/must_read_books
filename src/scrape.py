@@ -60,6 +60,17 @@ for idx, book in enumerate(soup.find_all('tr', '')):
     links_pt2.append(book.find('a', 'bookTitle')['href'])
 
 
+# add full url links to go into each page
+
+def combine_url_parts(lst):
+
+    full_links = []
+    for idx, link in enumerate(lst):
+        link_lst = ['https://www.goodreads.com', lst[idx]]
+        full_link = ''.join(link_lst)
+        full_links.append(full_link)
+    return full_links
+
 # Step 4: Go through pulled hyperlinks for more data
 
 b_format = []
@@ -103,7 +114,8 @@ print(ranking)
 print(rating)
 print(score)
 print(votes)
-print(link)
+print(links_pt2)
+print(combine_url_parts(links_pt2))
 print(b_format)
 print(pg_cnt)
 print(release)
