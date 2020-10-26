@@ -85,9 +85,9 @@ for link in links:
 
     #  this is skipping the item by item inspection - I may want to do that
 
-    fmt = sub_soup.find('span', 'bookFormat').text
-    pgs = sub_soup.find('span', 'numberOfPages').text
-    rls = sub_soup.find('nobr', 'greyText').text.rstrip()
+    fmt = sub_soup.find_all('div', 'row')[0].find_all('span')[0].text
+    pgs = sub_soup.find_all('div', 'row')[0].find_all('span')[1].text
+    rls = sub_soup.find_all('div', 'row')[1].find('nobr', 'greyText').text.strip()
 
     b_format.append(fmt)
     pg_cnt.append(pgs)
