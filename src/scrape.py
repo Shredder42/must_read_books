@@ -2,7 +2,7 @@ from pymongo import MongoClient
 import pprint
 import pandas as pd
 import requests
-import bs4 from BeautifulSoup
+from bs4 import BeautifulSoup
 import json
 import time
 
@@ -33,13 +33,13 @@ soup.find_all('tr', "")[0]
 soup.find_all('table', "tablesList js-dataTooltip")[0]
 
 # identify the elements that I want
-soup.find_all('tr itemscope', '')[1].find('td', 'number').text # ranking
-soup.find_all('tr itemscope', '')[1].find('a', 'bookTitle').text.rstrip() # book title
-soup.find_all('tr itemscope', '')[1].find('a', 'bookTitle').a['href'] # link to book
-soup.find_all('tr itemscope', '')[1].find('a', 'authorname').span.text.rstrip() # author
-soup.find_all('tr itemscope', '')[1].find('span', 'minirating').text.rstrip() #rating
-soup.find_all('tr itemscope', '')[1].find('span', 'list_book_votes_2657').text # score
-soup.find_all('tr itemscope', "")[1].find('a', 'loading_link_778518').text.rstrip() # votes
+soup.find_all('tr itemscope', '')[0].find('td', 'number').text # ranking
+soup.find_all('tr itemscope', '')[0].find('a', 'bookTitle').text.rstrip() # book title
+soup.find_all('tr itemscope', '')[0].find('a', 'bookTitle').a['href'] # link to book
+soup.find_all('tr itemscope', '')[0].find('a', 'authorname').span.text.rstrip() # author
+soup.find_all('tr itemscope', '')[0].find('span', 'minirating').text.rstrip() #rating
+soup.find_all('tr itemscope', '')[0].find('span', 'list_book_votes_2657').text # score
+soup.find_all('tr itemscope', "")[0].find('a', 'loading_link_778518').text.rstrip() # votes
 
 # loop through the entries
 b_title = []
