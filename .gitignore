@@ -1,5 +1,7 @@
 # Data (too large)
-/data/*
+./data/*
 
 # jupyter notebook checkpoints
 ./.ipynb_checkpoints
+
+*.csv
