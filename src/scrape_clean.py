@@ -112,3 +112,5 @@ df = pd.DataFrame({'rank': ranking, 'title': b_title, 'author': author, 'format'
                     'pages': pg_cnt, 'rating': rating, 'score': score,
                     'votes': votes, 'release_date': release, 'new_release_date': new_release})
 df
+
+df.to_csv('data/book_data.csv')
