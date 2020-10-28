@@ -3,5 +3,6 @@
 
 # jupyter notebook checkpoints
 .ipynb_checkpoints
+*/*.ipynb_chekcpoints/
 
 *.csv
