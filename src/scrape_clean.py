@@ -19,14 +19,9 @@ new_release = []
 
 iter = 0
 
-for i in range(1,231):
+for i in range(1,22):
 
     url = f'https://www.goodreads.com/list/show/264.Books_That_Everyone_Should_Read_At_Least_Once?page={i}'
-
-#     new_url = url.split('=')
-#     add_1 = int(new_url[1]) + 1
-#     new_url[1] = str(add_1)
-#     url = '='.join(new_url)
 
     iter += 1
 
@@ -111,6 +106,11 @@ for i in range(1,231):
 df = pd.DataFrame({'rank': ranking, 'title': b_title, 'author': author, 'format': b_format,
                     'pages': pg_cnt, 'rating': rating, 'score': score,
                     'votes': votes, 'release_date': release, 'new_release_date': new_release})
-df
+
+
+if __name__ == '__main__'
+
+print(pages.count_documents({}))
+print(sub_pages.count_documents({}))
 
 df.to_csv('data/book_data.csv')
