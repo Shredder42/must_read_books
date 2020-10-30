@@ -161,6 +161,18 @@ ax.set_xscale('log')
 ax.legend(loc='best')
 plt.savefig('img/sufficient_scatter_rating_score.png')
 
+# y-axis begin at 2.5 instead of 0 (centers the figure)
+fig, ax = plt.subplots(figsize=(12, 5))
+ax.scatter(sufficient['score'], sufficient['rating'], color = 'green')
+ax.set_title("Distribution of Log Score by Rating for Books with 2+ Votes and 10+ Ratings")
+ax.axhline(4.060, color='blue', linestyle='--', label='Ratings Mean = 4.06')
+ax.set_xlabel("Log of Score")
+ax.set_ylabel("Rating")
+ax.set_xscale('log')
+ax.set_ylim(2.5, 5.5)
+ax.legend(loc='best')
+plt.savefig('img/sufficient_scatter_rating_score_2.png')
+
 # Hypothesis Tests
 
 # Test on overall data set
